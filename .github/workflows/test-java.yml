@@ -11,7 +11,7 @@ on:  # Xác định khi nào workflow được kích hoạt
 jobs:
   build:  # Tên job là "build"
     name: Test on Windows  # Mô tả job hiển thị là "Test on Windows"
-    runs-on: windows-lastest  # Chạy trên hệ điều hành Windows (bản mới nhất) - chú ý: nên là "windows-latest"
+    runs-on: windows-latest  # Chạy trên hệ điều hành Windows (bản mới nhất) - chú ý: nên là "windows-latest"
 
     steps:  # Các bước thực hiện trong job
       - name: Checkout Code  # Bước checkout mã nguồn từ repo
