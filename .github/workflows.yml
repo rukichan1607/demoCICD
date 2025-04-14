@@ -1,0 +1,27 @@
+name: Java Test  # Đặt tên workflow là "Java Test"
+
+on:  # Xác định khi nào workflow được kích hoạt
+  pull_request:  # Kích hoạt khi có pull request đến nhánh main
+    branches:
+      - main
+  push:  # Kích hoạt khi có push trực tiếp vào nhánh main
+    branches:
+      - main
+
+jobs:
+  build:  # Tên job là "build"
+    name: Test on Windows  # Mô tả job hiển thị là "Test on Windows"
+    runs-on: windows-lastest  # Chạy trên hệ điều hành Windows (bản mới nhất) - chú ý: nên là "windows-latest"
+
+    steps:  # Các bước thực hiện trong job
+      - name: Checkout Code  # Bước checkout mã nguồn từ repo
+        uses: actions/checkout@v3  # Dùng action có sẵn của GitHub để checkout code
+
+      - name: Set up JDK  # Bước cài đặt Java JDK
+        uses: actions/setup-java@v3  # Dùng action setup-java để cài JDK
+        with:
+          distribution: 'temurin'  # Sử dụng bản phân phối Temurin (một bản OpenJDK)
+          java-version: '21'  # Sử dụng Java version 21
+
+      - name: Build and test on windows  # Bước chạy build và test
+        run: mvn clean verify  # Dùng Maven để build và test dự án (clean xóa build cũ, verify chạy test và validate)
